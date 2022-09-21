@@ -1,25 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+	
+	const [selectedColor, setSelectedColor] = useState("green")
+	
+
+	return(
+		<>
+			<div className="box"></div>
+			<div className="semaforo">
+			
+				<div
+					onClick={(event) => setSelectedColor("red")} 
+					className={"red" + (selectedColor === "red" ? " led" : "")}>
+
+				</div>
+			
+				<div
+					onClick={(event) => setSelectedColor("yellow")}  
+					className={"yellow" + (selectedColor === "yellow" ? " led" : "")}>
+
+				</div>
+			
+				<div
+					onClick={(event) => setSelectedColor("green")}  
+					className={"green" + (selectedColor === "green" ? " led" : "")}>
+				</div>
+			</div>
+
+			<button 
+				type="button" 
+				class="btn btn-dark"
+				onClick={(event) => {
+					if (selectedColor === "red") {
+						setSelectedColor("yellow");
+					} else if (selectedColor === "yellow") {
+						setSelectedColor("green");
+					} else if (selectedColor === "green") {
+						setSelectedColor("red")
+					}
+				}}>
+					Cambiar Color
+			</button>
+		
+			
+		</>
 	);
 };
 
